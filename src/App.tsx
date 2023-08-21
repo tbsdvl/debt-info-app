@@ -1,25 +1,11 @@
-import {useQuery, useQueryClient} from 'react-query';
-import {getCurrentDebt} from './api';
+import CurrentDebt from './components/CurrentDebt.tsx';
 
 const App = () => {
-  const queryClient = useQueryClient();
-  const {isLoading, data} = useQuery('current', getCurrentDebt);
-
-  if (isLoading) {
-    return <>Loading...</>;
-  }
-
-  if (data) {
-  console.log(data);
-    return (
-      <>
-        <span>{data.effectiveDate}</span>
-        <div>
-          Current Total Debt: {data.totalDebt}
-        </div>
-      </>
-    )
-  }
+  return (
+    <>
+      <CurrentDebt />
+    </>
+  );
 }
 
 export default App;
