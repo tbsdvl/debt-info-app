@@ -37,7 +37,6 @@ export const getDebtByDateRange = async (startDate: string | Date, endDate: stri
     const endDateInfo = getDateInfo(endDate);
     const getDebtByDateRangeResponse = await get(`/debt/search/?startdate=${formatDate(startDateInfo)}&enddate=${formatDate(endDateInfo)}`);
     if (getDebtByDateRangeResponse && getDebtByDateRangeResponse.status === 200) {
-      console.log(getDebtByDateRangeResponse.data)
       return getDebtByDateRangeResponse.data.entries as Set<DebtModel>;
     }
   } catch (err) {
