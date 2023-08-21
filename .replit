@@ -1,5 +1,7 @@
 run = "npm run dev"
+
 entrypoint = "src/main.tsx"
+
 hidden = [".config", "package-lock.json", "tsconfig.json"]
 
 [packager]
@@ -25,3 +27,7 @@ requiredFiles = [".replit", "replit.nix", ".config"]
   pattern = "**/{*.ts,*.js,*.tsx,*.jsx,*.json}"
     [languages.typescript.languageServer]
     start = "typescript-language-server --stdio"
+
+[deployment]
+run = ["sh", "-c", "npm run start"]
+
