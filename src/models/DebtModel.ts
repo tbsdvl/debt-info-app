@@ -7,7 +7,7 @@ export default class DebtModel {
   constructor(debt) {
     this.effectiveDate = debt.effectiveDate;
     this.governmentHoldings = debt.governmentHoldings;
-    this.publicDebt = debt.publicHoldings;
+    this.publicDebt = debt.publicDebt;
     this.totalDebt = debt.totalDebt;
   }
 };
