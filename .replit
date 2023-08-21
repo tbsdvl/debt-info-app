@@ -1,4 +1,7 @@
 run = "npm run dev"
+
+entrypoint = "src/main.tsx"
+
 hidden = [".config", "package-lock.json", "tsconfig.json"]
 
 [packager]
@@ -27,3 +30,4 @@ requiredFiles = [".replit", "replit.nix", ".config"]
 
 [deployment]
 run = ["sh", "-c", "npm run start"]
+
