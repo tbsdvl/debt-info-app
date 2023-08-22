@@ -1,4 +1,7 @@
-// @vitest-environment jsdom
+/** 
+ * @vitest-environment jsdom
+ * @vitest-environment-options {"url": "https://www.treasurydirect.gov/"}
+ */
 import { renderHook, waitFor } from '@testing-library/react';
 import {QueryClient, QueryClientProvider} from 'react-query';
 import {getCurrentDebtQuery} from '../src/queries';
@@ -15,6 +18,7 @@ describe('query', () => {
   test('should successfully retrieve the current debt', async () => {
     const { result } = renderHook(() => getCurrentDebtQuery(), { wrapper });
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
-    // await waitFor(() => expect(result.data).toBeDefined());
+    await waitFor(() => expect(result.current.data).toBeDefined());
+    await waitFor(() => expect(result.current.data.governmentHoldings).toBeDefined());
   });
 });

@@ -1,5 +1,5 @@
 import {useQuery, useQueryClient} from 'react-query';
-import {getCurrentDebt} from './api';
+import {getCurrentDebt} from '../api';
 
 const CurrentDebt = () => {
   const {isLoading, data} = useQuery('current', getCurrentDebt);
