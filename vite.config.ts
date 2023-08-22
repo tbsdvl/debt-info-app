@@ -6,6 +6,6 @@ export default defineConfig({
   plugins: [react()],
   server: {
     hmr: 443,
-    host: '0.0.0.0',
+    host: process.env.HOST,
   }
 })
