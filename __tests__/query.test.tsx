@@ -31,7 +31,7 @@ describe('query', () => {
   });
 
   test('should successfully retrieve the debt information for a valid date', async () => {
-   const { result } = getQueryResult(getDebtByDateQuery, '2018-04-13 19:18');
+    const { result } = getQueryResult(getDebtByDateQuery, '2018-04-13 19:18');
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
     await waitFor(() => expect(result.current.data).toBeDefined());
     await waitFor(() => expect(result.current.data.governmentHoldings).toBe(5667057298759.77));
@@ -41,7 +41,7 @@ describe('query', () => {
   });
 
   test('should fail to retrieve the debt information for a invalid date', async () => {
-   const { result } = getQueryResult(getDebtByDateQuery, 'not a date');
+    const { result } = getQueryResult(getDebtByDateQuery, 'not a date');
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
     await waitFor(() => expect(result.current.data).toBeUndefined());
   });
