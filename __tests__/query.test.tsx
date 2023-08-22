@@ -4,7 +4,7 @@
  */
 import { renderHook, waitFor } from '@testing-library/react';
 import {QueryClient, QueryClientProvider, UseQueryResult} from 'react-query';
-import {getCurrentDebtQuery, getDebtByDateQuery} from '../src/queries';
+import {getCurrentDebtQuery, getDebtByDateQuery, getDebtByDateRangeQuery} from '../src/queries';
 import {describe, expect, test} from 'vitest';
 
 describe('query', () => {
@@ -16,7 +16,6 @@ describe('query', () => {
   );
 
   const getQueryResult = (query: UseQueryResult<any, unknown>, ...args) => {
-    console.log(...args);
     return renderHook(() => query(...args), { wrapper });
   }
 
@@ -42,6 +41,19 @@ describe('query', () => {
 
   test('should fail to retrieve the debt information for a invalid date', async () => {
     const { result } = getQueryResult(getDebtByDateQuery, 'not a date');
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
+    await waitFor(() => expect(result.current.data).toBeUndefined());
+  });
+
+  test('should successfully retrieve the debt information for a valid date range', async () => {
+    const { result } = getQueryResult(getDebtByDateRangeQuery, '2018-04-13 19:18', '2020-01-07 19:18');
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
+    await waitFor(() => expect(result.current.data).toBeDefined());
+    await waitFor(() => expect(result.current.data.length).toBeGreaterThan(1));
+  });
+
+  test('should successfully retrieve the debt information for an invalid date range', async () => {
+    const { result } = getQueryResult(getDebtByDateQuery, '2020-01-07 19:18', '2018-04-13 19:18');
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
     await waitFor(() => expect(result.current.data).toBeUndefined());
   });
