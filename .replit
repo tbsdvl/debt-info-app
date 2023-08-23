@@ -19,6 +19,11 @@ XDG_CONFIG_HOME = "$REPL_HOME/.config"
 PATH = "$REPL_HOME/node_modules/.bin:$REPL_HOME/.config/npm/node_global/bin"
 npm_config_prefix = "$REPL_HOME/.config/npm/node_global"
 
+[[ports]]
+viewer = "http://localhost:5173"
+port = 5173
+# externalPort = 5900
+
 [gitHubImport]
 requiredFiles = [".replit", "replit.nix", ".config"]
 
