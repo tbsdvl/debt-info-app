@@ -1,7 +1,7 @@
 /** 
  * @vitest-environment jsdom
  * @vitest-environment-options {"url": "https://www.treasurydirect.gov/"}
- */
+*/
 import { renderHook, waitFor } from '@testing-library/react';
 import {QueryClient, QueryClientProvider, UseQueryResult} from 'react-query';
 import {getCurrentDebtQuery, getDebtByDateQuery, getDebtByDateRangeQuery} from '../src/queries';

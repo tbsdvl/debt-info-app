@@ -5,7 +5,16 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
-    hmr: 443,
+    hmr: true,
     host: process.env.HOST ?? 'localhost',
+    port: process.env.PORT ? +process.env.PORT : 5173,
+    proxy: {
+      '/api': {
+        target: 'https://www.treasurydirect.gov/NP_WS',
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      },
+    }
   }
 })

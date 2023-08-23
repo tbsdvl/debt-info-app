@@ -9,8 +9,11 @@ import {screen} from '@testing-library/react';
 import App from '../src/App';
 
 describe('app', () => {
-    test('should load the App component', async () => {
+    test('should load the CurrentDebt component', async () => {
       render(<App />);
-      await screen.findByText(/United States Debt/i);
+      await screen.findByText(/Current Debt to the Penny/i);
+      await screen.findByText(/Government Holdings/i);
+      await screen.findByText(/Public Debt/i);
+      await screen.findByText(/Total Debt/i);
     });
 });
