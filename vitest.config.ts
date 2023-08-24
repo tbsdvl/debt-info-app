@@ -10,7 +10,7 @@ export default defineConfig({
   server: {
     hmr: true,
     host: process.env.HOST ?? 'localhost',
-    port: 5173,
+    port: process.env.PORT ? +process.env.PORT : 5173,
     proxy: {
       '/api': {
         target: 'https://www.treasurydirect.gov/NP_WS',

@@ -2,7 +2,7 @@ import axios from 'axios';
 import DebtModel from '../models/DebtModel.ts';
 import {getDateInfo, formatDate} from '../util/date.ts';
 
-const baseUrl = 'http://localhost:5173/api';
+const baseUrl = `http://localhost:5173/api`;
 
 const get = async (url: string) => {
   return await axios.get(`${baseUrl}${url}`);

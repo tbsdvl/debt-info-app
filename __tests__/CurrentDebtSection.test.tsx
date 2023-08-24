@@ -3,14 +3,14 @@
  * @vitest-environment-options {"url": "https://www.treasurydirect.gov/"}
 */
 import React from 'react';
-import {describe, expect, test} from 'vitest';
+import {describe, test} from 'vitest';
 import {render} from '../src/util/test.tsx';
 import {screen} from '@testing-library/react';
-import App from '../src/App';
+import CurrentDebtSection from '../src/components/CurrentDebtSection.tsx';
 
-describe('app', () => {
-    test('should load the CurrentDebt component', async () => {
-      render(<App />);
+describe('CurrentDebtSection', () => {
+    test('should load the CurrentDebtSection component', async () => {
+      render(<CurrentDebtSection />);
       await screen.findByText(/Current Debt to the Penny/i);
       await screen.findByText(/Government Holdings/i);
       await screen.findByText(/Public Debt/i);
