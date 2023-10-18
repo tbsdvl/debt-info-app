@@ -11,7 +11,7 @@ import DebtInfoChartSection from '../src/components/DebtInfoChartSection.tsx';
 describe('DebtInfoChartSection', () => {
     test('should load the DebtInfoChartSection component', async () => {
       render(<DebtInfoChartSection />);
-      await screen.findByText(/Has Data/i);
+      await screen.findByText(/United States Historical Debt Data/i);
       // await screen.findByText(/Government Holdings/i);
       // await screen.findByText(/Public Debt/i);
       // await screen.findByText(/Total Debt/i);

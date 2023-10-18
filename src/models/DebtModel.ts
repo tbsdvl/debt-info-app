@@ -1,5 +1,5 @@
 export default class DebtModel {
-  public effectiveDate: Date;
+  public effectiveDate: Date | number;
   public governmentHoldings: number;
   public publicDebt: number;
   public totalDebt: number;

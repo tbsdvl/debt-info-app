@@ -52,6 +52,13 @@ describe('query', () => {
     await waitFor(() => expect(result.current.data.length).toBeGreaterThan(1));
   });
 
+    test('should successfully retrieve the debt information for a valid date range between a string and a date object', async () => {
+    const { result } = getQueryResult(getDebtByDateRangeQuery, '2018-04-13 19:18', new Date());
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
+    await waitFor(() => expect(result.current.data).toBeDefined());
+    await waitFor(() => expect(result.current.data.length).toBeGreaterThan(1));
+  });
+
   test('should fail to retrieve the debt information for an invalid date range', async () => {
     const { result } = getQueryResult(getDebtByDateQuery, '2020-01-07 19:18', '2018-04-13 19:18');
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
