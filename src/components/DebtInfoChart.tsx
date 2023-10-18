@@ -12,7 +12,7 @@ const DebtInfoChart = () => {
     return (
       <>
         <h2>United States Historical Debt Data</h2>
-        <Chart dataset={data} />  
+        <Chart dataset={data} />
       </>
     );
   }
