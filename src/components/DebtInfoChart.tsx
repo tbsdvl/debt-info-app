@@ -16,6 +16,7 @@ const DebtInfoChart = () => {
       type: 'line',
       showMark: ({ index }) => index % 2 === 0,
       tooltip: { label: 'Total Debt', valueKey: 'totalDebt' },
+      valueFormatter: (v: number) => `\$${v}`
     },
     {
       id: 'governmentHoldings',
@@ -24,6 +25,7 @@ const DebtInfoChart = () => {
       type: 'line',
       showMark: ({ index }) => index % 2 === 0,
       tooltip: { label: 'Government Holdings', valueKey: 'governmentHoldings' },
+      valueFormatter: (v: number) => `\$${v}`
     },
     {
       id: 'publicDebt',
@@ -32,6 +34,7 @@ const DebtInfoChart = () => {
       type: 'line',
       showMark: ({ index }) => index % 2 === 0,
       tooltip: { label: 'Public Debt', valueKey: 'publicDebt' },
+      valueFormatter: (v: number) => `\$${v}`
     },
   ];
 

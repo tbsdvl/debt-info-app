@@ -1,4 +1,3 @@
-import {useQuery, useQueryClient} from 'react-query';
 import {getCurrentDebtQuery} from '../queries';
 import {Typography} from '@mui/material';
 

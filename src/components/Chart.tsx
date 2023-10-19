@@ -2,7 +2,6 @@ import { LineChart } from '@mui/x-charts';
 import DebtModel from "../models/DebtModel";
 
 const Chart = ({ dataset, series, downsampleFactor }) => {
-
   const downsampleData = (data: Array<DebtModel>, downsampleFactor: number) => {
     const downsampledData = [];
 
@@ -34,9 +33,9 @@ const Chart = ({ dataset, series, downsampleFactor }) => {
   });
 
   const customize = {
-    height: 300,
+    height: 500,
     legend: { hidden: false },
-    margin: { top: 5 },
+    margin: { top: 5, left: 125 },
     stackingOrder: 'descending',
   };
 
@@ -52,8 +51,29 @@ const Chart = ({ dataset, series, downsampleFactor }) => {
             max: debtData[0].effectiveDate,
             scaleType: 'time',
             hideTooltip: false,
+            label: 'Years',
           },
         ]}
+        yAxis={[
+          {
+            axisId: 'y-axis-1',
+            valueFormatter: (v) => `\$${v}`
+          }
+        ]}
+        sx={{
+          "& .MuiChartsAxis-root line": {
+            stroke: 'white',
+          },
+          "& .MuiChartsLegend-series tspan": {
+            fill: 'white'
+          },
+          "& .MuiChartsAxis-tickContainer text": {
+            fill: 'white',
+          },
+          "& .MuiChartsAxis-label tspan": {
+            fill: 'white',
+          }
+        }}
         series={series}
         dataset={debtData}
         {...customize}
