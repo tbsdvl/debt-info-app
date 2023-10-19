@@ -22,6 +22,9 @@ npm_config_prefix = "$REPL_HOME/.config/npm/node_global"
 [gitHubImport]
 requiredFiles = [".replit", "replit.nix", ".config"]
 
+[[ports]]
+
+
 [languages]
   [languages.typescript]
   pattern = "**/{*.ts,*.js,*.tsx,*.jsx,*.json}"

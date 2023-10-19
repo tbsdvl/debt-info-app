@@ -1,8 +1,8 @@
-import {useQuery, useQueryClient} from 'react-query';
-import {getCurrentDebt} from '../api';
+import {getCurrentDebtQuery} from '../queries';
+import {Typography} from '@mui/material';
 
 const CurrentDebt = () => {
-  const {isLoading, data} = useQuery('current', getCurrentDebt);
+  const {isLoading, data} = getCurrentDebtQuery();
 
   if (isLoading) {
     return <>Loading...</>;
@@ -11,12 +11,18 @@ const CurrentDebt = () => {
   if (data) {
     return (
       <>
-        <span>{data.effectiveDate}</span>
-        <div>
-          Current Total Debt: {data.totalDebt}
-        </div>
+          <h2>Current Debt to the Penny on {data.effectiveDate}</h2>
+          <Typography>
+            Government Holdings: ${data.governmentHoldings}
+          </Typography>
+          <Typography>
+            Public Debt: ${data.publicDebt}
+          </Typography>
+          <Typography>
+            Total Debt: ${data.totalDebt}
+          </Typography>
       </>
-    )
+    );
   }
 }
 

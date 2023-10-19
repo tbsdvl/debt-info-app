@@ -1,9 +1,13 @@
-import CurrentDebt from './components/CurrentDebt.tsx';
+import Header from './components/Header.tsx';
+import CurrentDebtSection from './components/CurrentDebtSection.tsx';
+import DebtInfoChartSection from './components/DebtInfoChartSection.tsx';
 
 const App = () => {
   return (
     <>
-      <CurrentDebt />
+      <Header />
+      <CurrentDebtSection />
+      <DebtInfoChartSection />
     </>
   );
 }
