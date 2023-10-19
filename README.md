@@ -6,7 +6,7 @@ All data is retrieved from TreasuryDirect's [Debt Information Web API](https://t
 
 TODO:
 
-- Download data as a .csv file.
+- Download data within date range as a .csv file.
 - Add basic & Keynesian mathematical models for simulating the US debt.
 
 ![Alt text](image.png)
