@@ -1,8 +1,21 @@
+import * as React from 'react';
+import dayjs, { Dayjs } from 'dayjs';
 import {getDebtByDateRangeQuery} from '../queries';
 import Chart from './Chart.tsx';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+// change to the calendar
+import { DateRangeCalendar } from '@mui/x-date-pickers-pro/DateRangeCalendar';
+import { DateRange } from '@mui/x-date-pickers-pro';
 
 const DebtInfoChart = () => {
-  const {isLoading, data} = getDebtByDateRangeQuery("January 4, 1993 EST", new Date());
+  const initBeginningDate = "January 4, 1993 EST";
+  const initEndingDate = new Date();
+  const {isLoading, data} = getDebtByDateRangeQuery(initBeginningDate, initEndingDate);
+  const [dateRange, setDateRange] = React.useState<DateRange<Dayjs>>([
+    dayjs(initBeginningDate),
+    dayjs(initEndingDate),
+  ]);
 
   if (isLoading) {
     return <>Loading...</>;
@@ -38,6 +51,16 @@ const DebtInfoChart = () => {
     },
   ];
 
+  // setup useEffect to send a request to the api when a date changes
+  React.useEffect(() => {
+    (async () => {
+      // Send the request when the date range changes.
+      if (dateRange) {
+        getDebtByDateRangeQuery(dateRange[0].locale(), date)
+      }
+    })();
+  }, [dateRange]);
+
   if (data) {
     return (
       <>
@@ -47,7 +70,16 @@ const DebtInfoChart = () => {
           series={series}
           downsampleFactor={250}
           />
-      </>
+          {/* Add the calendar */}
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DateRangeCalendar
+                minDate={dayjs(initBeginningDate)}
+                maxDate={dayjs(initEndingDate)}
+                value={dateRange}
+                onChange={(dates) => setDateRange(dates)}
+              />
+          </LocalizationProvider>
+        </>
     );
   }
 }
