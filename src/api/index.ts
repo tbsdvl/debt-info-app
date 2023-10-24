@@ -31,7 +31,7 @@ export const getDebtByDate = async (date: string | Date): Promise<DebtModel> | u
   }
 }
 
-export const getDebtByDateRange = async (startDate: string | Date, endDate: string | Date): Promise<Set<DebtModel>> | undefined => {
+export const getDebtByDateRange = async (startDate: string | Date, endDate: string | Date): Promise<Set<DebtModel>> | Promise<unknown> | undefined => {
   try {
     const startDateInfo = getDateInfo(startDate);
     const endDateInfo = getDateInfo(endDate);

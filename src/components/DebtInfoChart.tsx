@@ -4,19 +4,19 @@ import {getDebtByDateRangeQuery} from '../queries';
 import Chart from './Chart.tsx';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DateRangeCalendar } from '@mui/x-date-pickers-pro/DateRangeCalendar';
+import { MultiInputDateRangeField  } from '@mui/x-date-pickers-pro/MultiInputDateRangeField';
 import { DateRange } from '@mui/x-date-pickers-pro';
 
 const DebtInfoChart = () => {
-  const initBeginningDate = "January 4, 1993 EST";
+  const initBeginningDate = new Date("January 4, 1993 EST");
   const initEndingDate = new Date();
   const [dateRange, setDateRange] = React.useState<DateRange<Dayjs>>([
     dayjs(initBeginningDate),
     dayjs(initEndingDate),
   ]);
   const {isLoading, data, refetch} = getDebtByDateRangeQuery(
-    dateRange[0].toDate(),
-    dateRange[dateRange.length - 1]?.toDate()
+    dateRange[0]?.isValid() ? dateRange[0]?.toDate() : initBeginningDate,
+    dateRange[1]?.isValid() ? dateRange[1]?.toDate() : initEndingDate
   );
 
   const fetchDebtData = (): void => {
@@ -67,13 +67,21 @@ const DebtInfoChart = () => {
           downsampleFactor={250}
           />
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DateRangeCalendar
+              <MultiInputDateRangeField
                 minDate={dayjs(initBeginningDate)}
                 maxDate={dayjs(initEndingDate)}
                 value={dateRange}
-                onChange={(dates) => {
+                onChange={(dates: any) => {
                   setDateRange(dates);
                   fetchDebtData();
+                }}
+                sx={{
+                  "& .MuiInputBase-input": {
+                    color: 'white',
+                  },
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: 'white'
+                  },
                 }}
               />
           </LocalizationProvider>
