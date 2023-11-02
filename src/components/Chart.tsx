@@ -1,9 +1,13 @@
 import { LineChart } from '@mui/x-charts';
 import DebtModel from "../models/DebtModel";
 
-const Chart = ({ dataset, series, downsampleFactor }) => {
+const Chart = ({ dataset, initialDataset, series, downsampleFactor }) => {
   const downsampleData = (data: Array<DebtModel>, downsampleFactor: number) => {
     const downsampledData = [];
+
+    if (!data.length) {
+      data = initialDataset;
+    }
 
     for (let i = 0; i < data.length; i += downsampleFactor) {
       const chunk = data.slice(i, i + downsampleFactor);
@@ -47,7 +51,7 @@ const Chart = ({ dataset, series, downsampleFactor }) => {
             id: 'Years',
             dataKey: 'effectiveDate',
             valueFormatter: (v) => v.getFullYear(),
-            min: debtData[debtData.length - 1].effectiveDate,
+            min: debtData[debtData.length - 1]?.effectiveDate,
             max: debtData[0].effectiveDate,
             scaleType: 'time',
             hideTooltip: false,

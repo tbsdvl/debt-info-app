@@ -6,15 +6,17 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { MultiInputDateRangeField  } from '@mui/x-date-pickers-pro/MultiInputDateRangeField';
 import { DateRange } from '@mui/x-date-pickers-pro';
+import DebtModel from '../models/DebtModel.ts';
 
 const DebtInfoChart = () => {
   const initBeginningDate = new Date("January 4, 1993 EST");
   const initEndingDate = new Date();
+  const [initialDataset, setInitialDataset] = React.useState<Array<DebtModel>>([]);
   const [dateRange, setDateRange] = React.useState<DateRange<Dayjs>>([
     dayjs(initBeginningDate),
     dayjs(initEndingDate),
   ]);
-  const {isLoading, data, refetch} = getDebtByDateRangeQuery(
+  const {isLoading, isError, data, refetch} = getDebtByDateRangeQuery(
     dateRange[0]?.isValid() ? dateRange[0]?.toDate() : initBeginningDate,
     dateRange[1]?.isValid() ? dateRange[1]?.toDate() : initEndingDate
   );
@@ -25,6 +27,10 @@ const DebtInfoChart = () => {
 
   if (isLoading) {
     return <>Loading...</>;
+  }
+
+  if (isError) {
+    return <>Error!</>;
   }
 
   const series = [
@@ -57,12 +63,17 @@ const DebtInfoChart = () => {
     },
   ];
 
+  if (data && !initialDataset.length) {
+    setInitialDataset(data);
+  }
+
   if (data) {
     return (
       <>
         <h2>United States Historical Debt Data</h2>
         <Chart
           dataset={data}
+          initialDataset={initialDataset}
           series={series}
           downsampleFactor={250}
           />
