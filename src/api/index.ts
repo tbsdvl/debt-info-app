@@ -8,7 +8,7 @@ const get = async (url: string) => {
   return await axios.get(`${baseUrl}${url}`);
 }
 
-export const getCurrentDebt = async (): Promise<DebtModel> | undefined => {
+export const getCurrentDebt = async (): Promise<DebtModel | undefined> => {
   try {
     const getCurrentDebtResponse = await get(`/debt/current?format=json`);
     if (getCurrentDebtResponse && getCurrentDebtResponse.status === 200) {
@@ -19,7 +19,7 @@ export const getCurrentDebt = async (): Promise<DebtModel> | undefined => {
   }
 }
 
-export const getDebtByDate = async (date: string | Date): Promise<DebtModel> | undefined => {
+export const getDebtByDate = async (date: string | Date): Promise<DebtModel | undefined> => {
   try {
     const info = getDateInfo(date);
     const getDebtByDateResponse = await get(`/debt/${info.year}/${info.month}/${info.day}`);
@@ -31,7 +31,7 @@ export const getDebtByDate = async (date: string | Date): Promise<DebtModel> | u
   }
 }
 
-export const getDebtByDateRange = async (startDate: string | Date, endDate: string | Date): Promise<Set<DebtModel>> | Promise<unknown> | undefined => {
+export const getDebtByDateRange = async (startDate: string | Date, endDate: string | Date): Promise<Set<DebtModel> | unknown | undefined> => {
   try {
     const startDateInfo = getDateInfo(startDate);
     const endDateInfo = getDateInfo(endDate);

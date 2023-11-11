@@ -39,7 +39,7 @@ const DebtInfoChart = () => {
       dataKey: 'totalDebt',
       label: 'Total Debt',
       type: 'line',
-      showMark: ({ index }) => index % 2 === 0,
+      showMark: ({ index }: { index: number }) => index % 2 === 0,
       tooltip: { label: 'Total Debt', valueKey: 'totalDebt' },
       valueFormatter: (v: number) => `\$${v}`
     },
@@ -48,7 +48,7 @@ const DebtInfoChart = () => {
       dataKey: 'governmentHoldings',
       label: 'Government Holdings',
       type: 'line',
-      showMark: ({ index }) => index % 2 === 0,
+      showMark: ({ index }: { index: number }) => index % 2 === 0,
       tooltip: { label: 'Government Holdings', valueKey: 'governmentHoldings' },
       valueFormatter: (v: number) => `\$${v}`
     },
@@ -57,14 +57,14 @@ const DebtInfoChart = () => {
       dataKey: 'publicDebt',
       label: 'Public Debt',
       type: 'line',
-      showMark: ({ index }) => index % 2 === 0,
+      showMark: ({ index }: { index: number }) => index % 2 === 0,
       tooltip: { label: 'Public Debt', valueKey: 'publicDebt' },
       valueFormatter: (v: number) => `\$${v}`
     },
   ];
 
   if (data && !initialDataset.length) {
-    setInitialDataset(data);
+    setInitialDataset(data as DebtModel[]);
   }
 
   if (data) {
@@ -72,7 +72,7 @@ const DebtInfoChart = () => {
       <>
         <h2>United States Historical Debt Data</h2>
         <Chart
-          dataset={data}
+          dataset={data as DebtModel[]}
           initialDataset={initialDataset}
           series={series}
           downsampleFactor={250}

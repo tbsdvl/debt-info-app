@@ -1,7 +1,9 @@
 import { LineChart } from '@mui/x-charts';
 import DebtModel from "../models/DebtModel";
 
-const Chart = ({ dataset, initialDataset, series, downsampleFactor }) => {
+const Chart = ({ dataset, initialDataset, series, downsampleFactor } :
+  { dataset: Array<DebtModel>, initialDataset: Array<DebtModel>, series: Array<any>, downsampleFactor: number}
+  ) => {
   const downsampleData = (data: Array<DebtModel>, downsampleFactor: number) => {
     const downsampledData = [];
 
