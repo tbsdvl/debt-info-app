@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 
-const Section = ({ id, component }) => {
+const Section = ({ id, component }: { id: string, component: JSX.Element }) => {
   return (
     <section
       id={id}

@@ -11,7 +11,7 @@ const CurrentDebt = () => {
   if (data) {
     return (
       <>
-          <h2>Current Debt to the Penny on {data.effectiveDate}</h2>
+          <h2>Current Debt to the Penny on {data.effectiveDate.toString()}</h2>
           <Typography>
             Government Holdings: ${data.governmentHoldings}
           </Typography>
