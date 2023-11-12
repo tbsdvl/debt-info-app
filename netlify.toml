@@ -1,4 +1,4 @@
 [[redirects]]
   from = "/api*"
-  to = "https://www.treasurydirect.gov/NP_WS"
+  to = "https://www.treasurydirect.gov/NP_WS/:splat"
   status = 200
