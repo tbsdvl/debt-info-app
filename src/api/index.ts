@@ -1,13 +1,9 @@
 import axios from 'axios';
-import dotenv from 'dotenv';
-dotenv.config();
 import DebtModel from '../models/DebtModel.ts';
 import {getDateInfo, formatDate} from '../util/date.ts';
 
-let baseUrl = `http://localhost:5173/api`;
-if (process.env.NODE_ENV === 'production') {
-  baseUrl = `https://${process.env.HOST}:${process.env.PORT}`
-}
+let baseUrl = '';
+baseUrl = import.meta.env.VITE_URL;
 
 const get = async (url: string) => {
   return await axios.get(`${baseUrl}${url}`);
