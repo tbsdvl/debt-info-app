@@ -3,6 +3,6 @@
   to = "https://www.treasurydirect.gov/NP_WS/:splat"
   status = 200
 
-  from = "/"
+  from = "/*"
   to = "https://subtle-malabi-661ab6.netlify.app/:splat"
   status = 200
